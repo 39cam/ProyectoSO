@@ -6,8 +6,8 @@
 #include <pthread.h>
 #include <time.h>
 
-#define DEFAULT_IP "192.168.0.10"
-#define DEFAULT_PORT 80
+#define DEFAULT_IP "127.0.0.1"
+#define DEFAULT_PORT 8080
 #define BUFFER_SIZE 2048
 #define CACHE_SIZE 3
 
