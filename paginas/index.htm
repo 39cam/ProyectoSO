@@ -1,15 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starbillet</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StarBillet - Tu boletería de eventos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="img/logoblanco.png">
+    <style>
+        .event-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .event-card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .event-card-content h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .event-card-content p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 5px;
+        }
+        .event-card-content .price {
+            font-weight: 700;
+            color: var(--color-accent);
+            font-size: 1.1rem;
+            margin-top: auto;
+        }
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+    </style>
 </head>
 
-
 <body>
-    
+    <header>
+        <nav role="navigation" aria-label="Main navigation">
+            <div class="logo-section">
+                <a href="index.htm">
+                    <div class="logo-section">
+                        <div class="logo-wrapper">
+                            <img src="img/logo.png" alt="Logo de StarBillet" class="logo-img" />
+                            <div class="gif-wrapper">
+                                <img id="gif-logo" src="img/giflogos.gif" alt="Animación del logo" class="gif-logo" />
+                                <img id="static-logo" src="img/Logotipo3.png" alt="Logotipo final"
+                                    class="gif-logo static-logo" style="display: none;" />
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-links" role="menu" style="display: flex; align-items: center; gap: 1rem;">
+                <a href="quienes.htm" role="menuitem" tabindex="0">Quiénes somos</a>
+                <a href="productos.htm" role="menuitem" tabindex="0">Productos</a>
+                <a href="contacto.htm" role="menuitem" tabindex="0">Contáctanos</a>           
+                <a href="sedes.htm" role="menuitem" tabindex="0">Sedes</a>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        const gif = document.getElementById("gif-logo");
+        const staticLogo = document.getElementById("static-logo");
+
+        // Cambiar después de duración total del gif (ejemplo: 3 segundos por ciclo x 2)
+        const gifDurationSeconds = 2; // cambia esto según la duración de UNA reproducción
+        const timesToPlay = 2;
+
+        setTimeout(() => {
+            gif.style.display = "none";
+            staticLogo.style.display = "block";
+        }, gifDurationSeconds * timesToPlay * 1000); // Tiempo en milisegundos
+    </script>
 
 
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Tu Pasaporte a eventos inolvidables</h1>
+                    <p>Descubre y reserva entradas para conciertos, festivales, deportes y más. Vive la experiencia
+                        StarBillet.</p>
+                </div>
+                <div class="hero-video">
+                    <video autoplay muted loop playsinline preload="auto" poster="poster.jpg">
+                        <source src="vid/starbillet.mp4" type="video/mp4">
+                        Tu navegador no soporta el video HTML5.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="container">
+            <h2>¿Por qué elegir StarBillet?</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.928 12c0 3.072 1.05 5.927 2.825 8.204a12.002 12.002 0 008.064 2.894 12.002 12.002 0 008.064-2.894A12.001 12.001 0 0021.072 12c0-3.072-1.05-5.927-2.825-8.204z" />
+                    </svg>
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Compra con confianza. Tus transacciones están protegidas.</p>
+                </div>
+                <div class="feature-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <h3>Entradas Instantáneas</h3>
+                    <p>Recibe tus boletos directamente en tu email o app.</p>
+                </div>
+                <div class="feature-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V3m0 18v-5M19 10h3m-3 4h3M1 10h3m-3 4h3m7-8v2m0 8v2M9 3h6a2 2 0 012 2v2a2 2 0 01-2 2H9a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                    </svg>
+                    <h3>Variedad de Eventos</h3>
+                    <p>Desde conciertos hasta obras de teatro, tenemos algo para todos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Contáctanos</h2>
+            <address style="font-style: normal; color: var(--color-text-muted);">
+                <span class="label">Email:</span> <a
+                    href="mailto:contacto@starbillet.com">contacto@starbillet.com</a><br />
+                <span class="label">Teléfono:</span> <a href="tel:+521234567890">+57 123 456 7890</a>
+            </address>
+
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 StarBillet. Todos los derechos reservados.
+    </footer>
 </body>
+
 </html>

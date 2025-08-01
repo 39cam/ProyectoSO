@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contáctanos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/logoblanco.png">
+</head>
+
+<body>
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo-section">
+        <a href="index.htm">
+          <div class="logo-wrapper">
+            <img src="img/logo.png" alt="Logo de StarBillet" class="logo-img" />
+            <div class="gif-wrapper">
+              <img id="gif-logo" src="img/giflogos.gif" alt="Animación del logo" class="gif-logo" />
+              <img id="static-logo" src="img/Logotipo3.png" alt="Logotipo final"
+                class="gif-logo static-logo" style="display: none;" />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="nav-links" role="menu">
+        <a href="quienes.htm" role="menuitem">Quiénes somos</a>
+        <a href="productos.htm" role="menuitem">Productos</a>
+        <a href="contacto.htm" role="menuitem">Contáctanos</a>
+        <a href="sedes.htm" role="menuitem">Sedes</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Contáctanos</h1>
+          <p>¿Tienes dudas, sugerencias o quieres trabajar con nosotros? Aquí tienes nuestras vías de contacto para que
+            siempre encuentres respuesta.</p>
+          <address style="font-style: normal; margin-top: 2rem; color: var(--color-text-muted);">
+            <strong>Email:</strong> <a href="mailto:contacto@starbillet.com">contacto@starbillet.com</a><br />
+            <strong>Teléfono:</strong> <a href="tel:+571234567890">+57 123 456 7890</a><br />
+            <strong>Dirección:</strong> Calle Ficticia #123, Bogotá, Colombia
+          </address>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>Horario de atención</h2>
+      <p>Lunes a Viernes: 8:00 AM – 6:00 PM</p>
+      <p>Sábados: 9:00 AM – 1:00 PM</p>
+      <p>Domingos y festivos: Cerrado</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 StarBillet. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const gif = document.getElementById("gif-logo");
+    const staticLogo = document.getElementById("static-logo");
+    const gifDurationSeconds = 2;
+    const timesToPlay = 2;
+
+    setTimeout(() => {
+      gif.style.display = "none";
+      staticLogo.style.display = "block";
+    }, gifDurationSeconds * timesToPlay * 1000);
+  </script>
+</body>
+
+</html>

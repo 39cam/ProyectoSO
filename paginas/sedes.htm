@@ -1,11 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sedes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/logoblanco.png">
 </head>
+
 <body>
-    
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo-section">
+        <a href="index.htm">
+          <div class="logo-wrapper">
+            <img src="img/logo.png" alt="Logo de StarBillet" class="logo-img" />
+            <div class="gif-wrapper">
+              <img id="gif-logo" src="img/giflogos.gif" alt="Animación del logo" class="gif-logo" />
+              <img id="static-logo" src="img/Logotipo3.png" alt="Logotipo final"
+                class="gif-logo static-logo" style="display: none;" />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="nav-links" role="menu">
+        <a href="quienes.htm" role="menuitem">Quiénes somos</a>
+        <a href="productos.htm" role="menuitem">Productos</a>
+        <a href="contacto.htm" role="menuitem">Contáctanos</a>
+        <a href="sedes.htm" role="menuitem">Sedes</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+  <section class="hero" style="padding: 2rem 2rem; min-height: auto;">
+    <div class="hero-content" style="padding: 0 2rem; flex-direction: column; text-align: center;">
+      <div class="hero-text" style="margin: 0; flex: 2 2 auto;">
+        <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Nuestras Sedes</h1>
+        <p style="font-size: 1rem; max-width: 600px; margin: 0 auto;">Contamos con tres oficinas principales en Colombia para estar más cerca de ti y brindarte la mejor atención.</p>
+      </div>
+    </div>
+  </section>
+
+    <section class="container">
+      <div class="features">
+        <!-- Sede Bogotá -->
+        <div class="feature-item">
+          <a href="https://www.google.com/maps/place/Bogotá" target="_blank">
+            <img src="https://www.portafolio.co/files/article_new_multimedia/uploads/2021/05/25/60acf1292c705.jpeg"
+              alt="Sede Bogotá" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+          </a>
+          <h3>Sede Bogotá</h3>
+          <p>Santa Barbara Central, Usaquén, Bogotá, Colombia</p>
+          <p><a href="https://www.google.com/maps/place/Bogotá" target="_blank">Ver en Google Maps</a></p>
+        </div>
+
+        <!-- Sede Medellín -->
+        <div class="feature-item">
+          <a href="https://www.google.com/maps/place/Medellín" target="_blank">
+            <img src="https://citiesofmusic.net/wp-content/uploads/2019/06/MEDELLIN-1200x800.jpg"
+              alt="Sede Medellín" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+          </a>
+          <h3>Sede Medellín</h3>
+          <p>La Mota, Belén, Medellin, Colombia</p>
+          <p><a href="https://www.google.com/maps/place/Medellín" target="_blank">Ver en Google Maps</a></p>
+        </div>
+
+        <!-- Sede Cali -->
+        <div class="feature-item">
+          <a href="https://www.google.com/maps/place/Cali" target="_blank">
+            <img src="https://www.elpais.com.co/resizer/v2/XKBSGMRM2JDZPP7AIMHZ7ZQH3M.jpg?auth=248a8ed0263fd53fad17819d648453a3ffe607fac0f8b793820d23d132062fde&smart=true&quality=75&width=1280&height=720"
+              alt="Sede Cali" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+          </a>
+          <h3>Sede Cali</h3>
+          <p>Olaya Herrera, Cali, Colombia</p>
+          <p><a href="https://www.google.com/maps/place/Cali" target="_blank">Ver en Google Maps</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 StarBillet. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const gif = document.getElementById("gif-logo");
+    const staticLogo = document.getElementById("static-logo");
+    const gifDurationSeconds = 2;
+    const timesToPlay = 2;
+
+    setTimeout(() => {
+      gif.style.display = "none";
+      staticLogo.style.display = "block";
+    }, gifDurationSeconds * timesToPlay * 1000);
+  </script>
 </body>
+
 </html>

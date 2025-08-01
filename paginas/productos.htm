@@ -1,11 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Productos - Boletas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/logoblanco.png">
 </head>
 <body>
-    
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo-section">
+        <a href="index.htm">
+          <div class="logo-wrapper">
+            <img src="img/logo.png" alt="Logo de StarBillet" class="logo-img" />
+            <div class="gif-wrapper">
+              <img id="gif-logo" src="img/giflogos.gif" alt="Animación del logo" class="gif-logo" />
+              <img id="static-logo" src="img/Logotipo3.png" alt="Logotipo final"
+                class="gif-logo static-logo" style="display: none;" />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="nav-links" role="menu">
+        <a href="quienes.htm" role="menuitem">Quiénes somos</a>
+        <a href="productos.htm" role="menuitem">Productos</a>
+        <a href="contacto.htm" role="menuitem">Contáctanos</a>
+        <a href="sedes.htm" role="menuitem">Sedes</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" style="padding: 2rem 1rem; min-height: auto;">
+      <div class="hero-content" style="flex-direction: column; text-align: center;">
+        <div class="hero-text" style="margin: 0; flex: 1 1 auto;">
+          <h1 style="font-size: 2rem;">Nuestros Productos</h1>
+          <p style="font-size: 1rem; max-width: 600px; margin: 0 auto;">
+            Encuentra boletas para los mejores eventos y asegura tu lugar ahora mismo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="events">
+        <div class="card">
+          <img src="https://bogota.gov.co/sites/default/files/2025-02/medidas-y-acompanamiento-para-el-concierto-de-shakira-en-bogota.png" alt="Boleta Concierto Bogotá">
+          <div class="card-content">
+            <h3>Boleta Concierto Bogotá</h3>
+            <p class="date-location">20 de Agosto, Estadio El Campín</p>
+            <a href="#" class="btn-secondary">Comprar Boleta</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/I2LKU4ZQIJEQJIXFBPYZ5GWLQ4.png" alt="Boleta Festival Medellín">
+          <div class="card-content">
+            <h3>Boleta Festival Medellín</h3>
+            <p class="date-location">15 de Septiembre, Parque Norte</p>
+            <a href="#" class="btn-secondary">Comprar Boleta</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1J4O8Z.img?w=768&h=449&m=6" alt="Boleta Show Cali">
+          <div class="card-content">
+            <h3>Boleta Show Cali</h3>
+            <p class="date-location">10 de Octubre, Coliseo El Pueblo</p>
+            <a href="#" class="btn-secondary">Comprar Boleta</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 StarBillet. Todos los derechos reservados.
+  </footer>
 </body>
 </html>

@@ -1,11 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiénes Somos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/logoblanco.png">
 </head>
+
 <body>
-    
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo-section">
+        <a href="index.htm">
+          <div class="logo-wrapper">
+            <img src="img/logo.png" alt="Logo de StarBillet" class="logo-img" />
+            <div class="gif-wrapper">
+              <img id="gif-logo" src="img/giflogos.gif" alt="Animación del logo" class="gif-logo" />
+              <img id="static-logo" src="img/Logotipo3.png" alt="Logotipo final"
+                class="gif-logo static-logo" style="display: none;" />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="nav-links" role="menu">
+        <a href="quienes.htm" role="menuitem">Quiénes somos</a>
+        <a href="productos.htm" role="menuitem">Productos</a>
+        <a href="contacto.htm" role="menuitem">Contáctanos</a>
+        <a href="sedes.htm" role="menuitem">Sedes</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>¿Quiénes somos?</h1>
+          <p>En StarBillet creemos en conectar emociones a través de eventos inolvidables. Somos una plataforma creada
+            por jóvenes apasionados por la música, el arte y el deporte, dedicada a facilitar la compra de boletos de
+            forma rápida, segura y accesible para todos.</p>
+          <p>Fundada en 2022, nuestra misión es acercar a las personas a sus experiencias favoritas, innovando
+            constantemente para ofrecer un servicio transparente y de calidad. Nos mueve la pasión por impulsar la
+            cultura y el entretenimiento, apoyando tanto a artistas emergentes como a grandes producciones.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>Nuestros valores</h2>
+      <div class="features">
+        <div class="feature-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.928 12c0 3.072 1.05 5.927 2.825 8.204a12.002 12.002 0 008.064 2.894 12.002 12.002 0 008.064-2.894A12.001 12.001 0 0021.072 12c0-3.072-1.05-5.927-2.825-8.204z" />
+          </svg>
+          <h3>Confianza</h3>
+          <p>Transparencia y seguridad en cada transacción.</p>
+        </div>
+        <div class="feature-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <h3>Innovación</h3>
+          <p>Soluciones tecnológicas para mejorar tu experiencia.</p>
+        </div>
+        <div class="feature-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V3m0 18v-5M19 10h3m-3 4h3M1 10h3m-3 4h3m7-8v2m0 8v2M9 3h6a2 2 0 012 2v2a2 2 0 01-2 2H9a2 2 0 01-2-2V5a2 2 0 012-2z" />
+          </svg>
+          <h3>Pasión</h3>
+          <p>Amor por la música, el arte y la cultura.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 StarBillet. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const gif = document.getElementById("gif-logo");
+    const staticLogo = document.getElementById("static-logo");
+    const gifDurationSeconds = 2;
+    const timesToPlay = 2;
+
+    setTimeout(() => {
+      gif.style.display = "none";
+      staticLogo.style.display = "block";
+    }, gifDurationSeconds * timesToPlay * 1000);
+  </script>
 </body>
+
 </html>
