@@ -57,26 +57,17 @@ void log_connection(struct sockaddr_in *client_addr) {
     fclose(logf);
 }
 
-void send_file(int client_socket, const char *file_path, const char *content_type) {
-    FILE *fp = fopen(file_path, "rb");
-    if (fp) {
-        fseek(fp, 0, SEEK_END);
-        long fsize = ftell(fp);
-        rewind(fp);
-        char *content = malloc(fsize);
-        fread(content, 1, fsize, fp);
-        fclose(fp);
-
-        char header[256];
-        sprintf(header, "HTTP/1.1 200 OK\r\nContent-Length: %ld\r\nContent-Type: %s\r\n\r\n", fsize, content_type);
-        send(client_socket, header, strlen(header), 0);
-        send(client_socket, content, fsize, 0);
-
-        free(content);
-    } else {
-        char *notfound = "HTTP/1.1 404 Not Found\r\nContent-Length: 13\r\n\r\n404 Not Found";
-        send(client_socket, notfound, strlen(notfound), 0);
-    }
+const char* get_content_type(const char *filename) {
+    const char *ext = strrchr(filename, '.');
+    if (!ext) return "application/octet-stream";
+    if (strcmp(ext, ".htm") == 0 || strcmp(ext, ".html") == 0) return "text/html";
+    if (strcmp(ext, ".css") == 0) return "text/css";
+    if (strcmp(ext, ".js") == 0) return "application/javascript";
+    if (strcmp(ext, ".png") == 0) return "image/png";
+    if (strcmp(ext, ".jpg") == 0 || strcmp(ext, ".jpeg") == 0) return "image/jpeg";
+    if (strcmp(ext, ".gif") == 0) return "image/gif";
+    if (strcmp(ext, ".mp4") == 0) return "video/mp4";
+    return "application/octet-stream";
 }
 
 void *handle_client(void *arg) {
@@ -101,47 +92,65 @@ void *handle_client(void *arg) {
 
     // Map path to file
     char file_path[256];
-    if (strcmp(path, "/") == 0) strcpy(file_path, "index.htm");
-    else if (strcmp(path, "/quienes") == 0) strcpy(file_path, "quienes.htm");
-    else if (strcmp(path, "/productos") == 0) strcpy(file_path, "productos.htm");
-    else if (strcmp(path, "/contacto") == 0) strcpy(file_path, "contacto.htm");
-    else if (strcmp(path, "/sedes") == 0) strcpy(file_path, "sedes.htm");
-    else strcpy(file_path, "404.htm");
-
-    // Buffer/cache
-    pthread_mutex_lock(&cache_mutex);
-    CacheEntry *entry = cache_lookup(file_path);
-    pthread_mutex_unlock(&cache_mutex);
-
-    if (entry) {
-        char header[256];
-        sprintf(header, "HTTP/1.1 200 OK\r\nContent-Length: %ld\r\nContent-Type: text/html\r\n\r\n", entry->size);
-        send(client_socket, header, strlen(header), 0);
-        send(client_socket, entry->content, entry->size, 0);
+    if (strcmp(path, "/") == 0) {
+        strcpy(file_path, "index.htm");
+    } else if (strcmp(path, "/quienes") == 0) {
+        strcpy(file_path, "quienes.htm");
+    } else if (strcmp(path, "/productos") == 0) {
+        strcpy(file_path, "productos.htm");
+    } else if (strcmp(path, "/contacto") == 0) {
+        strcpy(file_path, "contacto.htm");
+    } else if (strcmp(path, "/sedes") == 0) {
+        strcpy(file_path, "sedes.htm");
     } else {
-        FILE *fp = fopen(file_path, "rb");
-        if (fp) {
-            fseek(fp, 0, SEEK_END);
-            long fsize = ftell(fp);
-            rewind(fp);
-            char *content = malloc(fsize);
-            fread(content, 1, fsize, fp);
-            fclose(fp);
+        // Elimina el '/' inicial y busca en subcarpetas si corresponde
+        snprintf(file_path, sizeof(file_path), "%s", path+1);
+    }
 
+    const char *content_type = get_content_type(file_path);
+
+    // Buffer/cache solo para páginas principales (htm/html)
+    int is_html = strstr(file_path, ".htm") || strstr(file_path, ".html");
+    if (is_html) {
+        pthread_mutex_lock(&cache_mutex);
+        CacheEntry *entry = cache_lookup(file_path);
+        pthread_mutex_unlock(&cache_mutex);
+
+        if (entry) {
+            char header[256];
+            sprintf(header, "HTTP/1.1 200 OK\r\nContent-Length: %ld\r\nContent-Type: %s\r\n\r\n", entry->size, content_type);
+            send(client_socket, header, strlen(header), 0);
+            send(client_socket, entry->content, entry->size, 0);
+            close(client_socket);
+            pthread_exit(NULL);
+        }
+    }
+
+    FILE *fp = fopen(file_path, "rb");
+    if (fp) {
+        fseek(fp, 0, SEEK_END);
+        long fsize = ftell(fp);
+        rewind(fp);
+        char *content = malloc(fsize);
+        fread(content, 1, fsize, fp);
+        fclose(fp);
+
+        char header[256];
+        sprintf(header, "HTTP/1.1 200 OK\r\nContent-Length: %ld\r\nContent-Type: %s\r\n\r\n", fsize, content_type);
+        send(client_socket, header, strlen(header), 0);
+        send(client_socket, content, fsize, 0);
+
+        // Solo cachear páginas principales
+        if (is_html) {
             pthread_mutex_lock(&cache_mutex);
             cache_insert(file_path, content, fsize);
             pthread_mutex_unlock(&cache_mutex);
-
-            char header[256];
-            sprintf(header, "HTTP/1.1 200 OK\r\nContent-Length: %ld\r\nContent-Type: text/html\r\n\r\n", fsize);
-            send(client_socket, header, strlen(header), 0);
-            send(client_socket, content, fsize, 0);
-
-            free(content);
-        } else {
-            char *notfound = "HTTP/1.1 404 Not Found\r\nContent-Length: 13\r\n\r\n404 Not Found";
-            send(client_socket, notfound, strlen(notfound), 0);
         }
+
+        free(content);
+    } else {
+        char *notfound = "HTTP/1.1 404 Not Found\r\nContent-Length: 13\r\n\r\n404 Not Found";
+        send(client_socket, notfound, strlen(notfound), 0);
     }
 
     close(client_socket);
